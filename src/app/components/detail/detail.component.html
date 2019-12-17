@@ -1,1 +1,106 @@
-<p>detail works!</p>
+<mat-toolbar class="nav-shadow" color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button routerLink="/home">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <span class="nav-space"></span>
+        <span>Snorlak</span>
+        <span class="nav-space"></span>
+        <!-- <mat-icon aria-hidden="false" class="text-danger" aria-label="Example heart icon">favorite</mat-icon> -->
+        <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="text-center cdr-img">
+    <img src="../../assets/images/pokemon.png" style="width:auto; margin:0 auto" alt="Snorlak">
+</div>
+<div class="cdr-item">
+    <mat-list>
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip color="primary" selected>Tierra</mat-chip>
+            <mat-chip color="accent" selected>Fuerza</mat-chip>
+            <mat-chip color="warn" selected>Otro</mat-chip>
+        </mat-chip-list>
+
+        <mat-selection-list>
+            <mat-list-option>
+                Favorito
+            </mat-list-option>
+        </mat-selection-list>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Descripción</h3>
+            <p matLine>
+                <span class="multiline"> Texto de prueba para pokemonra la descripción del pokemonra la descripción del pokemonra la descripción del pokemonra la descripción del pokemon de pokedex.</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Características</h3>
+            <p matLine>
+                <span class="multiline"> Texto de prueba para pokemonra la descripción del pokemonra la descripción del pokemonra la descripción del pokemonra la descripción del pokemon de pokedex.</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Altura</h3>
+            <p matLine>
+                <span class="multiline"> 1.00 m</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Peso</h3>
+            <p matLine>
+                <span class="multiline"> 80.00 Kg</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Genero</h3>
+            <p matLine>
+                <span class="multiline">Masculino</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Categoría y hablilidades</h3>
+            <p matLine>
+                <span class="multiline"> Dormir, fuerza.</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Tipo</h3>
+            <p matLine>
+                <span class="multiline">Tierra, Fuerza.</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Debilidades</h3>
+            <p matLine>
+                <span class="multiline">Sueño</span>
+            </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+        <mat-list-item>
+            <h3 matLine>Evolución</h3>
+            <p matLine>
+                <span class="multiline"> Evolución</span>
+            </p>
+        </mat-list-item>
+
+    </mat-list>
+</div>

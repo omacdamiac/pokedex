@@ -1,0 +1,52 @@
+<mat-toolbar class="nav-shadow" color="primary">
+    <mat-toolbar-row>
+        <span>{{ title }}</span>
+        <span class="nav-space"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Ordenar por nombre</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>voicemail</mat-icon>
+                <span>Ordenar por tipo</span>
+            </button>
+            <hr>
+            <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Mis favoritos</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="cdr-list">
+    <mat-grid-list [cols]="cols" rowHeight="1:1.8" gutterSize="3px" (window:resize)="onResize($event)">
+        <!-- Pokemon -->
+        <mat-grid-tile class="rounded">
+            <img src="../../assets/images/pokemon.png" class="w-100" alt="Snorlak">
+            <mat-grid-tile-header>
+                <h3><a routerLink="/detail">Snorlak</a></h3>
+                <!-- <mat-icon aria-hidden="false" class="text-danger" aria-label="Example heart icon">favorite</mat-icon> -->
+                <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                        <mat-icon>favorite</mat-icon>
+                      </button>
+            </mat-grid-tile-header>
+            <mat-grid-tile-footer>
+                <span class="rounded">Tierra</span>
+                <span class="rounded">Fuerza</span>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+        <!-- End pokemon -->
+
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile>5</mat-grid-tile>
+        <mat-grid-tile>6</mat-grid-tile>
+        <mat-grid-tile>7</mat-grid-tile>
+    </mat-grid-list>
+</div>

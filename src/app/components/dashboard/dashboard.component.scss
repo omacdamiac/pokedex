@@ -1,0 +1,39 @@
+mat {
+    &-toolbar {
+        position: fixed;
+        z-index: 2;
+        top: -1px;
+        left: 0;
+        right: 0;
+    }
+    &-grid-tile {
+        background: lightblue;
+    }
+    &-grid-tile-header {
+        padding: 0 3px!important;
+        a {
+            color: white;
+            font-size: 16px
+        }
+        button {
+            font-size: 22px !important;
+            position: absolute;
+            right: 3px!important;
+        }
+    }
+    &-grid-tile-footer {
+        padding: 0 3px!important;
+        background: none!important;
+        text-align: center;
+        span {
+            color: white;
+            font-size: 16px;
+            background: lightseagreen;
+            padding: 2px 3px;
+            margin-right: 2px;
+        }
+    }
+    &-card-actions {
+        float: right;
+    }
+}

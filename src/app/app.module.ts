@@ -6,17 +6,42 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+import { MatToolbarModule,
+          MatIconModule,
+          MatMenuModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatCardModule,
+        MatChipsModule,
+      MatDividerModule,
+      MatListModule,
+      MatFormFieldModule,
+      MatInputModule} from "@angular/material";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DetailComponent
+    DetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
