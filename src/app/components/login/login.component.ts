@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       return this._api_auth.loginUser(this.user.user, this.user.password).subscribe(data => {
         this._api_auth.setUser(data.user);
         this.router.navigate(['/home']);
-        location.reload();
+        //location.reload();
         this.isError = false;
       },
       error => this.onIsError()

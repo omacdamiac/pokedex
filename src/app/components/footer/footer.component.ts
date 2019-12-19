@@ -15,6 +15,11 @@ export class FooterComponent implements OnInit {
     this.onCheckUser();
   }
 
+    onLogout(): void {
+      this._api_auth.logoutUser();
+    location.reload();
+  }
+
   onCheckUser(): void {
     if (this._api_auth.getCurrentUser() === null) {
       this.isLogged = false;

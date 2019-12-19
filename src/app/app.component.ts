@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(private router:Router){
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        if (event.url.match('/login/') || event.url.match('/home/')) {
+        if (event.url.match('/login') || event.url.match('/home')) {
           this.hideElement = true;
           
         } else {
