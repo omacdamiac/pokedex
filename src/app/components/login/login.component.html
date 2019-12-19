@@ -1,20 +1,24 @@
-<div class="container">
+<div class="container" id="login">
     <div class="row">
         <div class="col-lg-4 col-12 offset-0 offset-lg-4">
             <img src="../../assets/images/pokebola.png" class="w-50" alt="">
             <div class="cdr-login">
                 <h3>Consultar pokedex</h3>
+                <form #formLogin="ngForm" (ngSubmit)="onLogin(formLogin)">
+                    <h1 class="h3 mb-3 font-weight-normal" *ngIf="!isError">Login</h1>
+                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                        Something is wrong!
+                    </div>
 
-                <form action="">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Usuario">
+                        <input matInput type="text" id="user" name="user" placeholder="User" [(ngModel)]="user.user" required>
                     </mat-form-field>
 
                     <mat-form-field class="w-100">
-                        <input matInput type="password" placeholder="Clave">
+                        <input matInput type="password" id="password" name="password" placeholder="Password" [(ngModel)]="user.password" required>
                     </mat-form-field>
                     <div class="text-right">
-                        <button mat-raised-button color="primary">Ingresar</button>
+                        <button type="submit" mat-raised-button color="primary">Ingresar</button>
                     </div>
                 </form>
             </div>
