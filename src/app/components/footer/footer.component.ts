@@ -10,7 +10,7 @@ import { Location } from "@angular/common";
 export class FooterComponent implements OnInit {
   constructor(private _api_auth: AuthService, private location: Location) { }
   public isLogged = false;
-
+  
   ngOnInit() {
     this.onCheckUser();
   }

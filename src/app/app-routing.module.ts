@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]},
   {path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'pokemon/id', component: DetailComponent, canActivate: [AuthGuard]},
+  {path: 'pokemon/:id', component: DetailComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component}
 ];
 

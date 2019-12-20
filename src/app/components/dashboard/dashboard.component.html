@@ -24,29 +24,21 @@
 </mat-toolbar>
 
 <div class="cdr-list">
-    <mat-grid-list [cols]="cols" rowHeight="1:1.8" gutterSize="3px" (window:resize)="onResize($event)">
+    <mat-grid-list [cols]="cols" [rowHeight]="cdr" gutterSize="3px" (window:resize)="onResize($event)">
         <!-- Pokemon -->
-        <mat-grid-tile class="rounded">
-            <img src="../../assets/images/pokemon.png" class="w-100" alt="Snorlak">
+        <mat-grid-tile class="rounded" *ngFor="let i of pokemonList">
+            <img src="{{ i.image.front_default }}" alt="{{ i.name }}">
             <mat-grid-tile-header>
-                <h3><a routerLink="/pokemon/id">Snorlak</a></h3>
+                <h3><a routerLink="/pokemon/{{ i.id }}">{{ i.name }}</a></h3>
                 <!-- <mat-icon aria-hidden="false" class="text-danger" aria-label="Example heart icon">favorite</mat-icon> -->
                 <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
                         <mat-icon>favorite</mat-icon>
                       </button>
             </mat-grid-tile-header>
             <mat-grid-tile-footer>
-                <span class="rounded">Tierra</span>
-                <span class="rounded">Fuerza</span>
+                <span class="rounded" *ngFor="let t of i.type">{{ t.type.name }}</span>
             </mat-grid-tile-footer>
         </mat-grid-tile>
         <!-- End pokemon -->
-
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-        <mat-grid-tile>5</mat-grid-tile>
-        <mat-grid-tile>6</mat-grid-tile>
-        <mat-grid-tile>7</mat-grid-tile>
     </mat-grid-list>
 </div>

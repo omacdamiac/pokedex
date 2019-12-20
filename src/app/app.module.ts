@@ -27,6 +27,7 @@ import { MatToolbarModule,
 
 //SERVICIOS
 import { AuthService } from './services/auth.service';
+import { PokemonService } from './services/pokemon.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { AuthService } from './services/auth.service';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
