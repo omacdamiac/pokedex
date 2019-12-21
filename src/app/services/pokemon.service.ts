@@ -19,4 +19,9 @@ export class PokemonService {
     return (this.pokemon = this._http.get(url_api))
   }
 
+  getPokemonId(id: number){
+    const url_api = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    return (this.pokemon = this._http.get(url_api));
+  }
+
 }
