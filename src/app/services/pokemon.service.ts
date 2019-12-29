@@ -9,8 +9,8 @@ export class PokemonService {
   constructor(private _http: HttpClient){}
   pokemon: any;
 
-  getAllPokemons(){
-    const url_api = 'https://pokeapi.co/api/v2/pokemon/';
+  getAllPokemons(offset: number, numberPokemon: number){
+    const url_api = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${numberPokemon}`;
     return this._http.get(url_api);
   }
 
@@ -23,5 +23,11 @@ export class PokemonService {
     const url_api = `https://pokeapi.co/api/v2/pokemon/${id}`;
     return (this.pokemon = this._http.get(url_api));
   }
+
+  getListFavorite(){
+    const url_api = `https://pokeapi.co/api/v2/pokemon?filter[where][favorito]=true`;
+    return (this.pokemon = this._http.get(url_api));
+  }
+
 
 }

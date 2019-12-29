@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { Page404Component } from './components/page404/page404.component';
@@ -12,6 +13,7 @@ import { NoAuthGuard } from "./guards/no-auth.guard";
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]},
+  {path: 'favoritos', component: FavoritesComponent, canActivate: [AuthGuard]},
   {path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'pokemon/:id', component: DetailComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component}

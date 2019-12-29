@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { MatToolbarModule,
 //SERVICIOS
 import { AuthService } from './services/auth.service';
 import { PokemonService } from './services/pokemon.service';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { PokemonService } from './services/pokemon.service';
     DetailComponent,
     DashboardComponent,
     Page404Component,
-    FooterComponent
+    FooterComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { PokemonService } from './services/pokemon.service';
     MatDividerModule,
     MatListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    InfiniteScrollModule
   ],
   providers: [AuthService, PokemonService],
   bootstrap: [AppComponent]

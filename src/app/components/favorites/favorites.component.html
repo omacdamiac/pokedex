@@ -3,43 +3,37 @@
         <span>{{ title }}</span>
         <span class="nav-space"></span>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
+                  <mat-icon>more_vert</mat-icon>
+                </button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>
-                <mat-icon>dialpad</mat-icon>
-                <span>Ordenar por nombre</span>
-            </button>
+                    <mat-icon>dialpad</mat-icon>
+                    <span>Ordenar por nombre</span>
+                </button>
             <button mat-menu-item>
-                <mat-icon>voicemail</mat-icon>
-                <span>Ordenar por tipo</span>
-            </button>
+                    <mat-icon>voicemail</mat-icon>
+                    <span>Ordenar por tipo</span>
+                </button>
             <hr>
             <button mat-menu-item routerLink="/favoritos">
-                <mat-icon>notifications_off</mat-icon>
-                <span>Mis favoritos</span>
-            </button>
+                    <mat-icon>notifications_off</mat-icon>
+                    <span>Mis favoritos</span>
+                </button>
         </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="cdr-list" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
-    <!-- Buscador -->
-    <mat-form-field>
-        <input matInput placeholder="Buscar" (keyup)="filterPokemon($event.target.value)">
-    </mat-form-field>
-    <!-- End buscador -->
-
+<div class="cdr-list">
     <mat-grid-list [cols]="cols" [rowHeight]="cdr" gutterSize="3px" (window:resize)="onResize($event)">
         <!-- Pokemon -->
-        <mat-grid-tile class="rounded" *ngFor="let i of pokemonList">
+        <mat-grid-tile class="rounded" *ngFor="let i of favoritos">
             <img src="{{ i.image }}" alt="{{ i.name }}">
             <mat-grid-tile-header>
                 <h3><a routerLink="/pokemon/{{ i.id }}">{{ i.name }}</a></h3>
                 <!-- <mat-icon aria-hidden="false" class="text-danger" aria-label="Example heart icon">favorite</mat-icon> -->
-                <button (click)="getFavorite(i.id)" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
-                        <mat-icon>{{ i.favorito  ? 'favorite' : 'favorite_border' }}</mat-icon>
-                      </button>
+                <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                            <mat-icon>{{ i.favorito  ? 'favorite' : 'favorite_border' }}</mat-icon>
+                          </button>
             </mat-grid-tile-header>
             <mat-grid-tile-footer>
                 <span class="rounded" *ngFor="let t of i.type">{{ t.type.name }}</span>
@@ -47,7 +41,4 @@
         </mat-grid-tile>
         <!-- End pokemon -->
     </mat-grid-list>
-
-    <button [ngClass]="'no-hidden'" *ngIf="showGoUpButton" class="btn btn-dark" (click)="scrollTop()">TOP</button>
-
 </div>

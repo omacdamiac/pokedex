@@ -3,6 +3,7 @@ import { AuthService } from "../../services/auth.service";
 import { Userinterface } from "../../models/userinterface";
 import { Pokemonlist } from "../../models/pokemonlist";
 import { PokemonService } from "../../services/pokemon.service";
+import { debounceTime } from "rxjs/operators";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,16 +12,24 @@ import { PokemonService } from "../../services/pokemon.service";
 })
 export class DashboardComponent implements OnInit {
   title = 'Pokedex';
+
   cols: number;
   cdr: any;
   mobile: any = '1:1.8';
   desktop: any = '1:1.4';
+
+  finishPage = 49;
+  actualPage: number;
+  offset: number = 0;
+  numberPokemon: number = 20;
+  servicesStatus = false;
+
   user: Userinterface;
   pokemonList: Array<Pokemonlist> = [];
-  //servicio pokemons
-  pokemons:any;
-
-  constructor(private _api_auth: AuthService, private _poke: PokemonService) { }
+  pokemons:any;  
+  constructor(private _api_auth: AuthService, private _poke: PokemonService){
+    this.actualPage = 1;
+  }
 
   ngOnInit() {
     //responsive
@@ -28,21 +37,63 @@ export class DashboardComponent implements OnInit {
     this.cdr = (window.innerWidth <= 400) ? this.mobile : this.desktop;
 
     this.user = this._api_auth.getCurrentUser();
-    console.log(this.user);
-    this.getListPokemon();
+
+    // si no existe el array lo llamo
+    if (localStorage.getItem('nuevo')) {
+     this.pokemonList = JSON.parse(localStorage.getItem('nuevo'));
+      //console.log('existe');
+    }else{
+      this.getListPokemon();
+    }
   }
 
   getListPokemon(){
-    this._poke.getAllPokemons().subscribe(data => {
+    this.servicesStatus = true;
+    this._poke.getAllPokemons(this.offset, this.numberPokemon).subscribe(data => {
       this.pokemons = data['results'];
       // console.log(this.pokemons);
       for (var poke = 0; poke < data['results'].length; poke++) {
         this._poke.getPokemonUrl(data['results'][poke]['url']).subscribe(data2 => {
-           //console.log(data2);
-          this.pokemonList.push<Pokemonlist>({'id':data2['id'], 'name': data2['name'], 'type': data2['types'], 'image': data2['sprites']});
-        })}
-    });
-    console.log(this.pokemonList);
+          this.pokemonList.push<Pokemonlist>({'id':data2['id'], 'name': data2['name'], 'type': data2['types'], 'image': data2['sprites']['front_default'], favorito: false});
+          localStorage.setItem('nuevo', JSON.stringify(this.pokemonList));
+        })
+      }  
+      this.servicesStatus = false;
+      this.offset = this.offset + this.numberPokemon;
+   })
+  }
+
+   getFavorite(id: number): void{
+     this.pokemonList = JSON.parse(localStorage.getItem('nuevo'));
+     for (var n = 0; n < this.pokemonList.length; n++) {
+        if (this.pokemonList[n].id == id) {
+        this.pokemonList[n].favorito = !this.pokemonList[n].favorito;
+
+         localStorage.setItem('nuevo', JSON.stringify(this.pokemonList));   
+        }
+     }
+  }
+  assignCopy(){
+    this.pokemonList = Object.assign([], this.pokemonList);
+ }
+
+  filterPokemon(textValue: string){
+      if(!textValue) this.assignCopy();
+      this.pokemonList = Object.assign([], this.pokemonList).filter(
+        item => item.name.toLowerCase().indexOf(textValue.toLowerCase()) > -1
+      )
+  }
+
+  //SCROLL
+  onScroll(){
+    if (this.servicesStatus == false) {
+      if (this.actualPage < this.finishPage) {
+        this.getListPokemon();
+        this.actualPage ++;
+      } else {
+        console.log('Fin');
+      } 
+    }
   }
 
   //RESPONSIVE MAT-GRID-LIST

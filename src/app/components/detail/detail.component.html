@@ -1,80 +1,83 @@
-<mat-toolbar class="nav-shadow" color="primary">
-    <mat-toolbar-row>
-        <button mat-icon-button routerLink="/home">
+<div *ngFor="let poke of pokemon">
+    <mat-toolbar class="nav-shadow" color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button routerLink="/home">
                     <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
-        <span class="nav-space"></span>
-        <span>{{ pokemon.name }}</span>
-        <span class="nav-space"></span>
-        <!-- <mat-icon aria-hidden="false" class="text-danger" aria-label="Example heart icon">favorite</mat-icon> -->
-        <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
-            <mat-icon>favorite</mat-icon>
-        </button>
-    </mat-toolbar-row>
-</mat-toolbar>
-<div class="text-center cdr-img">
-    <img src="{{ pokemon.sprites.front_default }}" class="w-25" alt="{{ pokemon.name }}">
-</div>
-<div class="cdr-item" *ngIf="pokemon">
-    <mat-list>
-        <mat-chip-list aria-label="Fish selection">
-            <mat-chip selected *ngFor="let ty of pokemon.types" class="{{ ty.type.name }} mat-chip mat-standard-chip">{{ ty.type.name }}</mat-chip>
-        </mat-chip-list>
+            <span class="nav-space"></span>
+            <span>{{ poke.name }}</span>
+            <span class="nav-space"></span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="text-center cdr-img">
+        <img src="{{ poke.image }}" class="" alt="{{ poke.name }}">
+    </div>
+    <div class="cdr-item">
+        <mat-list>
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip selected *ngFor="let ty of poke.types" class="{{ ty.type.name }} mat-chip mat-standard-chip">{{ ty.type.name }}</mat-chip>
+            </mat-chip-list>
 
-        <mat-selection-list>
-            <mat-list-option>
-                Favorito
-            </mat-list-option>
-        </mat-selection-list>
-        <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Favorito</h3>{{ favotito | json }}
+                <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="getFavorite()">
+                <mat-icon>{{ favoritos[0].favorito  ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
 
-        <mat-list-item>
-            <h3 matLine>Descripción</h3>
-            <p matLine>
-                <span class="multiline">{{ pokemon_des_gen[0].descripcion }}.</span>
-            </p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Descripción</h3>
+                <p matLine>
+                    <span class="multiline">{{ poke.descripcion }}.</span>
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
 
-        <mat-list-item>
-            <h3 matLine>Altura</h3>
-            <p matLine>
-                <span class="multiline"> {{ pokemon.height }}</span>
-            </p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Altura</h3>
+                <p matLine>
+                    <span class="multiline"> {{ poke.height }}</span>
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
 
-        <mat-list-item>
-            <h3 matLine>Peso</h3>
-            <p matLine>
-                <span class="multiline"> {{ pokemon.weight }} Kg</span>
-            </p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Peso</h3>
+                <p matLine>
+                    <span class="multiline"> {{ poke.weight }} Kg</span>
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
 
-        <mat-list-item>
-            <h3 matLine>Genero</h3>
-            <p matLine>
-                <span class="multiline">{{ pokemon_des_gen[0].genero }}.</span>
-            </p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Genero</h3>
+                <p matLine>
+                    <span class="multiline">{{ poke.genero }}.</span>
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
 
-        <mat-list-item>
-            <h3 matLine>Hablilidades</h3>
-            <p matLine>
-                <span class="multiline" *ngFor=" let ab of pokemon.abilities">{{ ab.ability.name}} </span>
-            </p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
+            <mat-list-item>
+                <h3 matLine>Hablilidades</h3>
+                <p matLine>
+                    <span class="multiline" *ngFor=" let ab of poke.abilities">
+                        <ul>
+                            <li>{{ ab.ability.name}}</li>
+                        </ul>
+                        </span>
+                </p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
 
-        <mat-list-item>
-            <h3 matLine>Evolución</h3>
-            <p matLine>
-                <!-- <a href="/pokemon/{{ pokemon.id + 1 }}">2</a> -->
-                <span class="multiline">{{ pokemon_evo[0].name.toUpperCase() }}</span>
-            </p>
-        </mat-list-item>
+            <mat-list-item>
+                <h3 matLine>Evolución</h3>
+                <p matLine>
+                    <!-- <a href="/pokemon/{{ pokemon.id + 1 }}">2</a> -->
+                    <span class="multiline">{{ poke.name.toUpperCase() }}</span>
+                </p>
+            </mat-list-item>
 
-    </mat-list>
+        </mat-list>
+    </div>
 </div>
