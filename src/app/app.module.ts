@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { FilterPipeModule } from "ngx-filter-pipe";
+import { OrderModule } from "ngx-order-pipe";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,7 +60,9 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    FilterPipeModule,
+    OrderModule
   ],
   providers: [AuthService, PokemonService],
   bootstrap: [AppComponent]

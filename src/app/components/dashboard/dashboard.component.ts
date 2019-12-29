@@ -3,7 +3,8 @@ import { AuthService } from "../../services/auth.service";
 import { Userinterface } from "../../models/userinterface";
 import { Pokemonlist } from "../../models/pokemonlist";
 import { PokemonService } from "../../services/pokemon.service";
-import { debounceTime } from "rxjs/operators";
+import { FilterPipe } from "ngx-filter-pipe";
+import { OrderPipe } from "ngx-order-pipe";
 
 @Component({
   selector: 'app-dashboard',
@@ -26,9 +27,19 @@ export class DashboardComponent implements OnInit {
 
   user: Userinterface;
   pokemonList: Array<Pokemonlist> = [];
-  pokemons:any;  
-  constructor(private _api_auth: AuthService, private _poke: PokemonService){
+  pokemons:any;
+
+  order: string = name;
+  reverse: boolean = false;
+  sortList: any[];
+
+  pokemonFilter: any = {name: ''};
+
+  constructor(private _api_auth: AuthService, private _poke: PokemonService, private filterPipe: FilterPipe, private orderPipe: OrderPipe){
     this.actualPage = 1;
+    this.sortList = orderPipe.transform(this.pokemonList, 'name');
+
+    console.log(filterPipe.transform(this.pokemonList, { name: 'B'}));    
   }
 
   ngOnInit() {
@@ -73,16 +84,16 @@ export class DashboardComponent implements OnInit {
         }
      }
   }
-  assignCopy(){
-    this.pokemonList = Object.assign([], this.pokemonList);
- }
+//   assignCopy(){
+//     this.pokemonList = Object.assign([], this.pokemonList);
+//  }
 
-  filterPokemon(textValue: string){
-      if(!textValue) this.assignCopy();
-      this.pokemonList = Object.assign([], this.pokemonList).filter(
-        item => item.name.toLowerCase().indexOf(textValue.toLowerCase()) > -1
-      )
-  }
+//   filterPokemon(textValue: string){
+//       if(!textValue) this.assignCopy();
+//       this.pokemonList = Object.assign([], this.pokemonList).filter(
+//         item => item.name.toLowerCase().indexOf(textValue.toLowerCase()) > -1
+//       )
+//   }
 
   //SCROLL
   onScroll(){
@@ -94,6 +105,14 @@ export class DashboardComponent implements OnInit {
         console.log('Fin');
       } 
     }
+  }
+
+  //Order
+  setOrder(value: string){
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
   }
 
   //RESPONSIVE MAT-GRID-LIST

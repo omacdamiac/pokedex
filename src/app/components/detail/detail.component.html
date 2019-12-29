@@ -10,7 +10,7 @@
         </mat-toolbar-row>
     </mat-toolbar>
     <div class="text-center cdr-img">
-        <img src="{{ poke.image }}" class="" alt="{{ poke.name }}">
+        <img src="{{ poke.image }}" alt="{{ poke.name }}">
     </div>
     <div class="cdr-item">
         <mat-list>
@@ -18,13 +18,13 @@
                 <mat-chip selected *ngFor="let ty of poke.types" class="{{ ty.type.name }} mat-chip mat-standard-chip">{{ ty.type.name }}</mat-chip>
             </mat-chip-list>
 
-            <mat-list-item>
-                <h3 matLine>Favorito</h3>{{ favotito | json }}
+            <!-- <mat-list-item>
+                <h3 matLine>Favorito</h3>
                 <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="getFavorite()">
                 <mat-icon>{{ favoritos[0].favorito  ? 'favorite' : 'favorite_border' }}</mat-icon>
             </button>
             </mat-list-item>
-            <mat-divider></mat-divider>
+            <mat-divider></mat-divider> -->
 
             <mat-list-item>
                 <h3 matLine>Descripción</h3>

@@ -47,25 +47,5 @@ export class DetailComponent implements OnInit {
 
     });
   }
-
-  /*
-  getListFavorite(){
-    this.favoritos.push({id:1, name: 'bullbasur', favorito: false});
-  }
-
-  getFavorite(item){
-    for (var fav = 0; fav < this.favoritos.length; fav++) {
-      this.favoritos[fav].favorito = !this.favoritos[fav].favorito;
-      if (Object.prototype.hasOwnProperty.call(localStorage, 'favoritos') == false) {
-        var myJson = JSON.stringify(this.favoritos);
-        localStorage.setItem('favoritos', myJson);
-        this.favoritos = this.favoritos;
-        
-      } else {
-        var obj = JSON.parse(localStorage.getItem('favoritos'));
-        this.favoritos = obj;
-      }
-    }
-    console.log(this.favoritos);
-  }*/
+  
 }
